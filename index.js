@@ -5,7 +5,7 @@ const Draw = (lineWidth = 10, strokeStyle = "#000") => {
     canvas.height = document.documentElement.clientHeight;
     let painting = false;
     let last = {};
-
+    document.ontouchmove = function(e){ e.preventDefault(); }
     let ctx = canvas.getContext('2d');
     ctx.strokeStyle = strokeStyle;
     ctx.lineWidth = lineWidth; //粗细
