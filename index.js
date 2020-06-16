@@ -23,12 +23,12 @@ const Draw = (lineWidth = 10, strokeStyle = "#000") => {
     //移动设备画画
     function drawForMobile() {
         canvas.ontouchstart = (e) => {
-            let { clientX, clientY } = e.touches[0].clientX;//第一个手指
+            let { clientX, clientY } = e.touches[0];//第一个手指
             last = { clientX, clientY };
         }
         canvas.ontouchmove = (e) => {
-            let { clientX, clientY } = e.touches[0].clientX;//第一个手指
-            drawLine(last.clientX, last.clientY, x, y);
+            let { clientX, clientY } = e.touches[0];//第一个手指
+            drawLine(last.clientX, last.clientY, clientX, clientY);
             last = { clientX, clientY };
         }
     }
@@ -37,12 +37,12 @@ const Draw = (lineWidth = 10, strokeStyle = "#000") => {
     function drawForPc() {
         canvas.onmousedown = (e) => {
             painting = true;
-            last = { clientX, clientY };
+            last = { clientX: e.clientX, clientY: e.clientY };
         }
         canvas.onmousemove = (e) => {
             if (painting) {
                 drawLine(last.clientX, last.clientY, e.clientX, e.clientY);
-                last = { clientX, clientY };
+                last = { clientX: e.clientX, clientY: e.clientY };
             }
         }
         canvas.onmouseup = () => {
